@@ -20,6 +20,7 @@
 #include <vector>
 using namespace std;
 
+#include "utility.cpp"
 /*
 Represents commands supported by the application
 These include: App commands, UI shell commands,
@@ -38,37 +39,38 @@ const string UICMD_QUIT = ".quit"; //quit the application
 const string UICMD_READ = ".read"; //read commands from script file
 
 //Developer commands (for debugging)
-const string DEV_trim = ".trim"; 
-const string DEV_endsWith = ".endsWith"; 
+const string DEV_trim = ".trim";
+const string DEV_endsWith = ".endsWith";
 const string DEV_startsWith = ".startsWith";
 const string DEV_toTitleCase = ".toTitleCase";
 
+
 const string UICommands[] = {
-	UICMD_QUIT, 
-	UICMD_LOG, 
+	UICMD_QUIT,
+	UICMD_LOG,
 	UICMD_HELP,
 	UICMD_READ
 	};
-const int NumberOfUICommands = 4;
+const int NumberOfUICommands = Utility::getArrLength(UICommands);
 const string AppCommands[] = {
 	CMD_ADD,
 	CMD_DELETE,
 	CMD_SHOW,
 	};
-const int NumberOfAppCommands = 3;
+const int NumberOfAppCommands = Utility::getArrLength(AppCommands);
 
 const string DevCommands[] = {
 	DEV_trim,
 	DEV_startsWith,
 	DEV_endsWith,
-    DEV_toTitleCase
+  DEV_toTitleCase
 	};
-const int NumberOfDevCommands = 4;
+const int NumberOfDevCommands = Utility::getArrLength(DevCommands);
 
 
 class Command
 {
-  public:   
+  public:
    Command(string cmdStr);
    string getCommandString();
    string getCommandName(); //first word in command string
@@ -82,12 +84,12 @@ class Command
    bool isUICommand();
    bool isAppCommand();
    bool isDevCommand();
-   
+
   private:
    string commandString; //command string;
    vector<string> tokens; //parsed command tokens
    void parse(string commandString); //parse the command string
-   
+
 };
 
 #endif

@@ -25,19 +25,20 @@ using namespace std;
 #include "mytunes.h"
 
 
+
 UI::UI(MyTunes * ownerApp) {
 	owner = ownerApp;
 	logging = OFF;
 }
 
 void UI::run(){
-	
+
   //initialize app with input script
   Command cmd = Command(".read insert_beatles_tracks_rev1.txt");
   executeCommand(cmd);
 
   executeCommand(UICMD_HELP); //show help menu on startup
-  
+
   string input;
 
   while (true) {
@@ -50,14 +51,14 @@ void UI::run(){
       }
 	  else {
 		  Command cmd = Command(input);
-          if((logging == COMMAND) || (logging == BOTH)) 
-              logs.push_back(cmd.getCommandString());		  
+          if((logging == COMMAND) || (logging == BOTH))
+              logs.push_back(cmd.getCommandString());
 		  if(cmd.isUICommand()) executeCommand(cmd);
 		  else if(cmd.isAppCommand()) owner->executeCommand(cmd);
 		  else if(cmd.isDevCommand()) executeDevCommand(cmd);
 		  else printError("UNRECOGNIZED COMMAND");
 	  }
-      
+
     }
 	printMessage("BYE");
 
@@ -96,7 +97,7 @@ void UI::printOutput(string outStr)
   //print to UI output
   //If logging is in progress the output will be written
   //to the log file as well.
-  if(logging == OUTPUT || logging == BOTH) logs.push_back(outStr);  
+  if(logging == OUTPUT || logging == BOTH) logs.push_back(outStr);
   cout << outStr << endl;
 }
 
@@ -124,14 +125,14 @@ void UI::executeUIREAD(Command cmd){
  	//printOutput("EXECUTING: UICMD_READ:" + cmd.getCommandString());
     //Read a script file of commands one line at at time
     //and execute each line as a command
-    
+
     enum arguments {READ,FILENAME}; //.read file_name
     string scriptFileName = cmd.getToken(FILENAME);
     ifstream file(scriptFileName, ifstream::in);
     if(!file){
        printError(".read Could Not Open File: " + scriptFileName);
        return;
-    } 
+    }
     string input;
     while(getline(file, input)){
 	  if(StrUtil::trim(input).empty()) {/*do nothing*/}
@@ -142,14 +143,14 @@ void UI::executeUIREAD(Command cmd){
       }
 	  else {
 		  Command cmd = Command(input);
-		  
+
 		  if(cmd.isUICommand()) executeCommand(cmd);
 		  else if(cmd.isAppCommand()) owner->executeCommand(cmd);
 		  else if(cmd.isDevCommand()) executeDevCommand(cmd);
 		  else printError("UNRECOGNIZED COMMAND");
-	  }       
+	  }
     }
-    file.close();      
+    file.close();
 }
 void UI::executeUILOG(Command cmd){
 /*
@@ -200,8 +201,5 @@ void UI::executeUIHELP(Command cmd){
     while(getline(file, input)){
         printOutput(input);
     }
-    file.close();   
+    file.close();
 }
-
-
-
