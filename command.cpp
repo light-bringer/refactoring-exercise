@@ -9,7 +9,7 @@
 /*  reposting, in part or in whole, requires         */
 /*  written consent of the author.                   */
 /*                                                   */
-/*  COMP 2404 students may reuse this content for    */ 
+/*  COMP 2404 students may reuse this content for    */
 /*  their course assignments without seeking consent */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -19,7 +19,7 @@
 #include <iostream>
 using namespace std;
 
-#include "str_util.h"
+//#include "str_util.h"
 #include "command.h"
 
 
@@ -47,7 +47,7 @@ string Command::getToken(int i){
 	      return tokens[i];
 	   else
 		  return "";
-   
+
 }
 
 string Command::getToken(string s){
@@ -79,7 +79,7 @@ bool Command::isValidIndex(string anIndexString){
 	   return true;
 	}
 	catch(const invalid_argument &a) {
-		return false;		
+		return false;
 	}
 }
 
@@ -101,8 +101,8 @@ bool Command::isDevCommand(){
 void Command::parse(string cmdStr)
 {
     /*
-	Parse (tokenize) the command 
-	
+	Parse (tokenize) the command
+
 	Parse a command like:
 	add -s "The Girl From Ipanema"
 	into:
@@ -118,7 +118,7 @@ void Command::parse(string cmdStr)
 	//and strip off the "" quotation marks.
 	//This parser essentially does a trim() as well because it
 	//uses a stringstream that strips off white space
-	
+
 	string tokenStr = ""; //for collecting "" quoted substring words
 	bool collecting = false; //not collecting quoted words
     while (ss >> buffer){
@@ -130,7 +130,7 @@ void Command::parse(string cmdStr)
      		(buffer[0] == '"') &&
 			(buffer[buffer.length()-1] == '"')){
 			//single word in "" quotes -strip off the quotes
-			tokens.push_back(buffer.substr(1,buffer.length()-2));	
+			tokens.push_back(buffer.substr(1,buffer.length()-2));
 		}
 	    else if((buffer.length() == 1) && (buffer[0] == '"')) {
 			//word is a single "
@@ -164,9 +164,9 @@ void Command::parse(string cmdStr)
 	}
 
     if(tokens.size() == 0) tokens.push_back("NO COMMAND");
-	
+
    //Command is now tokenized into tokens vector
-	
+
    //Print parsed command tokens for now
    cout << "PARSED COMMAND:" << '\n';
    //shows use of iterator
@@ -174,4 +174,3 @@ void Command::parse(string cmdStr)
        cout << *it << '\n';
 
 }
-
