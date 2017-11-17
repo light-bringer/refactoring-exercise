@@ -16,3 +16,8 @@ Please report bugs to me so I can fix them.
 Lou Nel
 ldnel@scs.carleton.ca
 
+
+
+To Test:
+chmod +x test_script.sh
+./test_script.sh
