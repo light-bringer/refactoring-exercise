@@ -1,0 +1,3 @@
+show users
+add -u Deb
+show tracks
