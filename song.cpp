@@ -17,9 +17,9 @@
 #include <string>
 using namespace std;
 
-#include "str_util.h"
+#include "utility.cpp"
 #include "song.h"
-	
+
 Song::Song(const string & aTitle, const string & aComposer, const int anID){
 	cout << "Song(string&, string&, int)" << endl;
 	title = aTitle;

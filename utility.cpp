@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <limits>
+#include <sstream>
+
 #include "utility.hpp"
 using namespace std;
 
